@@ -36,6 +36,30 @@ for (i = 0; i < boxes.length; i++) {
 
     });
 
+    // evento para saber si e 2 player ou IA
+    for(let i = 0; i < buttons.length; i++){
+
+        buttons[i].addEventListener("click",function(){
+
+            secondPlayer = this.getAttribute("id");
+
+            for(let j = 0; j < buttons.length; j++){
+
+                buttons[j].style.display = 'none';
+
+
+            }
+
+            setTimeout(function(){
+
+                let container = document.querySelector("#container");
+                container.classList.remove("hide");
+
+            },200);
+
+        });
+    }
+
 
 }
 // verifica quem vai jogar 
