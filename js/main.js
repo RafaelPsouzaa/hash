@@ -12,7 +12,7 @@ let player1 = 0;
 let player2 = 0;
 
 // adicionando o evento de click
-for (i = 0; i < boxes.length; i++) {
+for (let i = 0; i < boxes.length; i++) {
     //quando alguem clica na caixa
     boxes[i].addEventListener("click", function () {
 
@@ -26,6 +26,13 @@ for (i = 0; i < boxes.length; i++) {
             // computar jogada 
             if (player1 == player2) {
                 player1++;
+                if(secondPlayer == 'AI-player'){
+                    // funçao excessao executar a jogada 
+                    
+                    computerPlayer();
+                    player2++;
+                    
+                }
             } else {
                 player2++;
             }
@@ -258,3 +265,33 @@ function checkWinCondition() {
    
 
 }
+// executar a jogada do CPU
+function computerPlayer(){
+
+    let cloneO = o.cloneNode(true); //clonando o elemento O no caso a bola 
+    counter = 0; 
+    filled = 0;
+
+    for(let i = 0; i < boxes.length; i++){
+        
+        let randomNumber = Math.floor(Math.random() * 5);
+        //só preencher si o filho estiver vazio
+        if(boxes[i].childNodes[0] == undefined){
+            if(randomNumber <= 1){
+                boxes[i].appendChild(cloneO);
+                counter++;
+                break;
+            }
+            //checagem de quantas estar preenchida
+        }else{
+            filled++;
+        }
+
+    }
+
+    if(counter == 0 && filled < 9 ){
+        computerPlayer();  
+    }
+
+
+};
